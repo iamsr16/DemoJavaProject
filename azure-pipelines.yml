@@ -10,26 +10,20 @@ pool:
   name: 'default'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     codeCoverageToolOption: 'JaCoCo'
-    codeCoverageClassFilter: '+:com.'
-    codeCoverageClassFilesDirectories: 'target/site/jacoco'
-    codeCoverageSourceDirectories: 'src/main,src/test'
+    codeCoverageClassFilter: '+:com.,'
+    codeCoverageClassFilesDirectories: 'target/classes'
     codeCoverageFailIfEmpty: true
     codeCoverageRestoreOriginalPomXml: true
     javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
-  displayName: 'Run a multi-line script'
