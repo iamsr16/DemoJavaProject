@@ -23,7 +23,7 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     codeCoverageToolOption: 'JaCoCo'
     codeCoverageClassFilter: '+:com.'
-    codeCoverageClassFilesDirectories: 'target/site/jacoco'
+    codeCoverageClassFilesDirectories: 'target/classes'
     codeCoverageSourceDirectories: 'src/main,src/test'
     codeCoverageFailIfEmpty: true
     codeCoverageRestoreOriginalPomXml: true
