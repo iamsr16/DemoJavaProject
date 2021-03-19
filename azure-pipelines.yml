@@ -17,13 +17,11 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     codeCoverageToolOption: 'JaCoCo'
-    codeCoverageClassFilter: '+:com.*,'
-    #codeCoverageClassFilesDirectories: 'target/classes'
-    #codeCoverageFailIfEmpty: true
+    codeCoverageClassFilter: '+:com.*'
     codeCoverageRestoreOriginalPomXml: true
-    #javaHomeOption: 'JDKVersion'
-    #jdkVersionOption: '1.8'
+    javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
+  displayName: 'Maven Tasks'
