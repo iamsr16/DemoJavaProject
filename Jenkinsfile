@@ -1,6 +1,9 @@
 def ARTI_VER
 pipeline {
   agent any
+  tools {
+        maven 'maven'
+  }
   stages {
     stage('Create Version') {
       steps {
@@ -10,6 +13,10 @@ pipeline {
         }
       }
     }
-
+    stage('Build') {
+      steps {
+        sh 'mvn package'
+      }
+    }
   }
 }
