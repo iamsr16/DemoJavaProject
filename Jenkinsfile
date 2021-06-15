@@ -1,9 +1,12 @@
+def ARTI_VER
 pipeline {
   agent any
   stages {
     stage('Create Version') {
       steps {
-        echo 'test_version'
+        script {
+          ARTI_VER = "${BRANCH_NAME}-${BUILD_NUMBER}" 
+        }
       }
     }
 
