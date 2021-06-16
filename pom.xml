@@ -10,11 +10,12 @@
    </parent>
    <groupId>com.app</groupId>
    <artifactId>app</artifactId>
-   <version>1.0</version>
+   <version>${revision}</version>
    <packaging>war</packaging>
    <name>example app</name>
    <description>Example App</description>
    <properties>
+	  <revision>SNAPSHOT</revision>
       <java.version>1.8</java.version>
       <swagger.version>2.9.2</swagger.version>
       <jwt.version>0.9.1</jwt.version>

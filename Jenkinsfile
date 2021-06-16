@@ -25,6 +25,11 @@ pipeline {
 		publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco*.xml')], 
 						sourceFileResolver: sourceFiles('NEVER_STORE')
       }
-    }
-  }
+   }
+   stage('Deploy to nexus') {
+      steps {
+        sh 'mvn -s settings.xml -Drevision=${ARTI_VER} deploy '
+      }
+   } 
+ }
 }
