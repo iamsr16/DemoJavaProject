@@ -31,8 +31,7 @@ pipeline {
         archive 'target/app*.war'
       }
     }
-  }
-    stage('Deploy to nexus') {
+	stage('Deploy to nexus') {
       steps {
         script {
           sh "mvn -s settings.xml -Drevision=$ARTI_VER deploy"
