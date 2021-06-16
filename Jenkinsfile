@@ -26,6 +26,12 @@ pipeline {
           sourceFileResolver: sourceFiles('NEVER_STORE')
       }
     }
+	stage('Local artifact archive') {
+      steps {
+        archive 'target/app*.war'
+      }
+    }
+  }
     stage('Deploy to nexus') {
       steps {
         script {
