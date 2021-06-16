@@ -1,5 +1,4 @@
 def ARTI_VER
-def GIT_BRANCH
 pipeline {
   agent any
   tools {
@@ -8,12 +7,10 @@ pipeline {
   stages {
     stage('Create Version') {
       steps {
-        script { 
-		  GIT_BRANCH = "${BRANCH_NAME}-${BUILD_NUMBER}"
-		  ARTI_VER = sh(returnStdout: true, script: "echo $GIT_BRANCH | sed 's@/@-@g'").trim()
+        script {
+          ARTI_VER = "${BRANCH_NAME}-${BUILD_NUMBER}" 
+          echo "${ARTI_VER}"
         }
-		sh 'echo $ARTI_VER'
-		sh 'echo $GIT_BRANCH'
       }
     }
 //    stage('Build') {
@@ -31,9 +28,9 @@ pipeline {
 //   }
    stage('Deploy to nexus') {
       steps {
-		sh 'echo $ARTI_VER'
-		sh 'echo $GIT_BRANCH'
-        sh 'mvn -s settings.xml -Drevision=$ARTI_VER deploy '
+	    script{
+           sh "mvn -s settings.xml -Drevision=$ARTI_VER deploy"
+	    }
       }
    } 
  }
