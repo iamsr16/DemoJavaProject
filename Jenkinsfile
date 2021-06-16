@@ -28,7 +28,7 @@ pipeline {
    }
    stage('Deploy to nexus') {
       steps {
-        sh 'mvn -s settings.xml -Drevision=${ARTI_VER} deploy '
+        sh 'mvn -s settings.xml -Drevision=$ARTI_VER deploy '
       }
    } 
  }
