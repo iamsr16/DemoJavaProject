@@ -8,7 +8,7 @@ pipeline {
     stage('Create Version') {
       steps {
         script { 
-		  ARTI_VER =  sh(returnStdout: true, script: "echo ${BRANCH_NAME}-${BUILD_NUMBER} | sed 's@/@-@g'").trim()"
+		  ARTI_VER =  sh(returnStdout: true, script: "echo ${BRANCH_NAME}-${BUILD_NUMBER} | sed 's@/@-@g'").trim()
         }
       }
     }
