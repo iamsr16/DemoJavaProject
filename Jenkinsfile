@@ -8,25 +8,27 @@ pipeline {
     stage('Create Version') {
       steps {
         script { 
-		  ARTI_VER =  sh(returnStdout: true, script: "echo ${BRANCH_NAME}-${BUILD_NUMBER} | sed 's@/@-@g'").trim()
+		  ARTI_VER = sh(returnStdout: true, script: "echo ${BRANCH_NAME}-${BUILD_NUMBER} | sed 's@/@-@g'").trim()
         }
+		sh 'echo $ARTI_VER'
       }
     }
-    stage('Build') {
-      steps {
-        sh 'mvn -s settings.xml package '
-      }
-    }
-	stage('Publish test and Code Coverage') {
-      steps {
-        junit allowEmptyResults: true, skipPublishingChecks: true, 
-				testResults: 'target/surefire-reports/*.xml'
-		publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco*.xml')], 
-						sourceFileResolver: sourceFiles('NEVER_STORE')
-      }
-   }
+//    stage('Build') {
+//      steps {
+//        sh 'mvn -s settings.xml package '
+//      }
+//    }
+//	stage('Publish test and Code Coverage') {
+//      steps {
+//        junit allowEmptyResults: true, skipPublishingChecks: true, 
+//				testResults: 'target/surefire-reports/*.xml'
+//		publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco*.xml')], 
+//						sourceFileResolver: sourceFiles('NEVER_STORE')
+//      }
+//   }
    stage('Deploy to nexus') {
       steps {
+		sh 'echo $ARTI_VER'
         sh 'mvn -s settings.xml -Drevision=$ARTI_VER deploy '
       }
    } 
