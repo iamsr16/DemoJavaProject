@@ -41,10 +41,10 @@ pipeline {
   }
   post {
     success {
-      office365ConnectorSend color: '#00cc00', message: 'Success  ${JOB_NAME} ${BUILD_NUMBER} for branch ${BRANCH_NAME}', status: 'SUCCESS', webhookUrl: 'https://nitoronline.webhook.office.com/webhookb2/1ecbc1fb-711d-4e7e-831d-8411f0f884ba@8c3dad1d-b6bc-4f8b-939b-8263372eced6/JenkinsCI/7090806d7110469b8fd9bb9fae47c3f3/ffd415cf-de42-4a1f-a127-7c9a0d3c12af'
+      office365ConnectorSend color: '#00cc00', message: "Success  ${JOB_NAME} build_number:${BUILD_NUMBER}, branch:${BRANCH_NAME} url:(<${BUILD_URL}|Open>)", status: 'SUCCESS', webhookUrl: 'https://nitoronline.webhook.office.com/webhookb2/1ecbc1fb-711d-4e7e-831d-8411f0f884ba@8c3dad1d-b6bc-4f8b-939b-8263372eced6/JenkinsCI/7090806d7110469b8fd9bb9fae47c3f3/ffd415cf-de42-4a1f-a127-7c9a0d3c12af'
     }
 	failure {
-      office365ConnectorSend color: '#fc2c03', message: 'Failed  ${JOB_NAME} ${BUILD_NUMBER} for branch ${BRANCH_NAME}', status: 'FAILED', webhookUrl: 'https://nitoronline.webhook.office.com/webhookb2/1ecbc1fb-711d-4e7e-831d-8411f0f884ba@8c3dad1d-b6bc-4f8b-939b-8263372eced6/JenkinsCI/7090806d7110469b8fd9bb9fae47c3f3/ffd415cf-de42-4a1f-a127-7c9a0d3c12af'
+      office365ConnectorSend color: '#fc2c03', message: "Failed  ${JOB_NAME} build_number:${BUILD_NUMBER}, branch:${BRANCH_NAME} url:(<${BUILD_URL}|Open>)", status: 'FAILED', webhookUrl: 'https://nitoronline.webhook.office.com/webhookb2/1ecbc1fb-711d-4e7e-831d-8411f0f884ba@8c3dad1d-b6bc-4f8b-939b-8263372eced6/JenkinsCI/7090806d7110469b8fd9bb9fae47c3f3/ffd415cf-de42-4a1f-a127-7c9a0d3c12af'
     }
   }
 }
