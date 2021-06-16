@@ -15,13 +15,15 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'mvn install '
+        sh 'mvn -s settings.xml package '
       }
     }
-	stage('Publish test') {
+	stage('Publish test and Code Coverage') {
       steps {
         junit allowEmptyResults: true, skipPublishingChecks: true, 
 				testResults: 'target/surefire-reports/*.xml'
+		publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco*.xml')], 
+						sourceFileResolver: sourceFiles('NEVER_STORE')
       }
     }
   }
