@@ -15,7 +15,13 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'mvn package'
+        sh 'mvn install '
+      }
+    }
+	stage('Publish test') {
+      steps {
+        junit allowEmptyResults: true, skipPublishingChecks: true, 
+				testResults: 'target/surefire-reports/*.xml'
       }
     }
   }

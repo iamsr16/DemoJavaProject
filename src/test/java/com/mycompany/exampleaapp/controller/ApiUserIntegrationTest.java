@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.*;
 @ActiveProfiles("test")
 public class ApiUserIntegrationTest {
 
-    private static final String URL = "http://localhost:8080";
+    private static final String URL = "http://localhost:8081";
 
     @Autowired
     private UserRepository userRepository;
