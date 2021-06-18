@@ -42,7 +42,7 @@ pipeline {
     stage('build docker image') {
       steps {
         script {
-		  withDockerServer([uri: 'tcp://192.168.32.23:2376']) {
+		  withDockerServer([uri: 'tcp://192.168.32.23:2375']) {
             appImage = docker.build("vaibhavprajapati12/userapis", ".")
 		  }
         }
