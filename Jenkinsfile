@@ -1,4 +1,5 @@
 def ARTI_VER
+def appImage
 pipeline {
   agent any
   tools {
@@ -38,11 +39,18 @@ pipeline {
         }
       }
     }
-   stage('build and push docker image') {
+    stage('build docker image') {
       steps {
         script {
-          def appImage = docker.build("vaibhavprajapati12/userapis:${BUILD_NUMBER}", "./Dockerfile")
-		  appImage.push()
+          appImage = docker.build("vaibhavprajapati12/userapis", "./Dockerfile")
+        }
+      }
+   }
+   stage('push docker image') {
+      steps {
+		 withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+		  appImage.push("${env.BUILD_NUMBER}")
+          appImage.push("latest")
         }
       }
     }
