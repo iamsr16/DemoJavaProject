@@ -48,9 +48,11 @@ pipeline {
    }
    stage('push docker image') {
       steps {
-		 withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
-		  appImage.push("${env.BUILD_NUMBER}")
-          appImage.push("latest")
+		script {
+		  withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+		    appImage.push("${env.BUILD_NUMBER}")
+		    appImage.push("latest")
+		  }
         }
       }
     }
