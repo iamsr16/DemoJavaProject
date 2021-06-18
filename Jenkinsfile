@@ -42,7 +42,7 @@ pipeline {
     stage('build docker image') {
       steps {
         script {
-          appImage = docker.build("vaibhavprajapati12/userapis", "./Dockerfile")
+          appImage = docker.build("vaibhavprajapati12/userapis", ".")
         }
       }
    }
