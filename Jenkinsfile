@@ -42,16 +42,20 @@ pipeline {
     stage('build docker image') {
       steps {
         script {
-          appImage = docker.build("vaibhavprajapati12/userapis", ".")
+		  withDockerServer([uri: 'tcp://192.168.32.23:2376']) {
+            appImage = docker.build("vaibhavprajapati12/userapis", ".")
+		  }
         }
       }
    }
    stage('push docker image') {
       steps {
 		script {
-		  withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
-		    appImage.push("${env.BUILD_NUMBER}")
-		    appImage.push("latest")
+		  withDockerServer([uri: 'tcp://192.168.32.23:2376']) {
+			withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+			  appImage.push("${env.BUILD_NUMBER}")
+			  appImage.push("latest")
+			}
 		  }
         }
       }
