@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'mvn -s settings.xml package'
+        sh 'mvn -s settings.xml clean package'
       }
     }
     stage('Publish test and Code Coverage') {
