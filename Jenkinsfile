@@ -51,7 +51,7 @@ pipeline {
    stage('push docker image') {
       steps {
 		script {
-		  withDockerServer([uri: 'tcp://192.168.32.23:2376']) {
+		  withDockerServer([uri: 'tcp://192.168.32.23:2375']) {
 			withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
 			  appImage.push("${env.BUILD_NUMBER}")
 			  appImage.push("latest")
