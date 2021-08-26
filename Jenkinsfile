@@ -3,13 +3,13 @@ def appImage
 pipeline {
   agent any
   tools {
-    maven 'maven'
+    maven 'maven 3.6'
   }
   stages {
     stage('Create Version') {
       steps {
         script {
-          ARTI_VER = "${BRANCH_NAME}-${BUILD_NUMBER}"
+          ARTI_VER = "${env.GIT_BRANCH}-${env.BUILD_NUMBER}"
           echo "${ARTI_VER}"
         }
       }
