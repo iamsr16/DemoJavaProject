@@ -5,7 +5,7 @@
       <mirror>
          <id>nexus</id>
          <mirrorOf>*</mirrorOf>
-         <url>http://192.168.32.21:30005/repository/maven-group-app/</url>
+         <url>http://192.168.43.134:8081/repository/simpleapp/</url>
          <name>nexus-release</name>
       </mirror>
    </mirrors>
@@ -13,7 +13,7 @@
       <server>
          <id>nexus</id>
          <username>admin</username>
-         <password>admin</password>
+         <password>admin123</password>
       </server>
    </servers>
    <profiles>
