@@ -1,6 +1,10 @@
 def ARTI_VER
 def appImage
 pipeline {
+	environment {
+        registry = "rahulyerme1234/user-app"
+        registryCredential = 'dockerhub'
+        }
   agent any
   tools {
     maven 'maven 3.6'
@@ -44,8 +48,8 @@ pipeline {
     stage('build docker image') {
       steps {
         script {
-		  withDockerServer([uri: 'tcp://192.168.32.23:2375']) {
-            appImage = docker.build("vaibhavprajapati12/userapis", ".")
+		  withDockerServer([uri: 'tcp://192.168.43.134:2375']) {
+            appImage = docker.build registry
 		  }
         }
       }
@@ -53,8 +57,8 @@ pipeline {
    stage('push docker image') {
       steps {
 		script {
-		  withDockerServer([uri: 'tcp://192.168.32.23:2375']) {
-			withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+		  withDockerServer([uri: 'tcp://192.168.43.134:2375']) {
+			withDockerRegistry(credentialsId: 'dockerhub') {
 			  appImage.push("${env.BUILD_NUMBER}")
 			  appImage.push("latest")
 			}
