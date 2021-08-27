@@ -35,7 +35,7 @@
                   <updatePolicy>never</updatePolicy>
                   <checksumPolicy>fail</checksumPolicy>
                </snapshots>
-               <url>http://192.168.32.21:30005/repository/maven-group-app</url>
+               <url>http://192.168.43.134:8081/repository/simpleapp/</url>
                <layout>default</layout>
             </repository>
           </repositories>
