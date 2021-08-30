@@ -13,7 +13,7 @@
       <server>
          <id>nexus</id>
          <username>admin</username>
-         <password>admin123</password>
+         <password>Rahul@123</password>
       </server>
    </servers>
    <profiles>
