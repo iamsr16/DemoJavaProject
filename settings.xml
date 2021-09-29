@@ -5,7 +5,7 @@
       <mirror>
          <id>nexus</id>
          <mirrorOf>*</mirrorOf>
-         <url>http://192.168.33.10:8081/repository/userrepo/</url>
+         <url>http://192.168.33.10:8081/repository/userapp/</url>
          <name>nexus-release</name>
       </mirror>
    </mirrors>
@@ -35,7 +35,7 @@
                   <updatePolicy>never</updatePolicy>
                   <checksumPolicy>fail</checksumPolicy>
                </snapshots>
-               <url>http://192.168.33.10:8081/repository/userrepo/</url>
+               <url>http://192.168.33.10:8081/repository/userapp/</url>
                <layout>default</layout>
             </repository>
           </repositories>
