@@ -58,22 +58,21 @@ pipeline {
     stage('build docker image') {
       steps {
         script {
-		  withDockerServer([uri: 'tcp://192.168.33.10:2375']) {
-            appImage = docker.build registry
-		  }
+		  
+            appImage = docker.build registry + ":$BUILD_NUMBER"
+		  
         }
       }
    }
    stage('push docker image') {
       steps {
 		script {
-		  withDockerServer([uri: 'tcp://192.168.33.10:2375']) {
 			withDockerRegistry(credentialsId: 'dockerhub') {
 			  appImage.push("${env.BUILD_NUMBER}")
 			  appImage.push("latest")
 			}
 		  }
-        }
+        
       }
     }
   }
