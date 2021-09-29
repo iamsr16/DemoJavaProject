@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-   <localRepository>/var/lib/jenkins/workspace/use-app-pipeline</localRepository>
+  
    <mirrors>
       <mirror>
          <id>nexus</id>
          <mirrorOf>*</mirrorOf>
-         <url>http://192.168.43.134:8081/repository/simpleapp/</url>
+         <url>http://192.168.33.10:8081/repository/userrepo/</url>
          <name>nexus-release</name>
       </mirror>
    </mirrors>
@@ -35,7 +35,7 @@
                   <updatePolicy>never</updatePolicy>
                   <checksumPolicy>fail</checksumPolicy>
                </snapshots>
-               <url>http://192.168.43.134:8081/repository/simpleapp/</url>
+               <url>http://192.168.33.10:8081/repository/userrepo/</url>
                <layout>default</layout>
             </repository>
           </repositories>
