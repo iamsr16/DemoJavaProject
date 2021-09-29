@@ -35,7 +35,7 @@ pipeline {
     }
     stage('Local artifact archive') {
       steps {
-        archive 'target/app*.war'
+        archiveArtifacts artifacts : 'target/app*.war'
       }
     }
     stage('Deploy to nexus') {
