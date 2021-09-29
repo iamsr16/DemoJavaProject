@@ -52,7 +52,7 @@ pipeline {
 		    nexusVersion: 'nexus3',
 		    protocol: 'http', 
 		    repository: 'userrepo', 
-		    version: 'SNAPSHOT'
+		    version: '-SNAPSHOT'
       }
     }
     stage('build docker image') {
