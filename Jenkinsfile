@@ -7,7 +7,7 @@ pipeline {
         }
   agent any
   tools {
-    maven 'maven 3.6'
+    maven 'apache-maven-3.6.3'
   }
   stages {
     stage('Create Version') {
@@ -40,15 +40,25 @@ pipeline {
     }
     stage('Deploy to nexus') {
       steps {
-        script {
-          sh "mvn -s settings.xml -Drevision=$ARTI_VER deploy"
-        }
+              nexusArtifactUploader artifacts:
+		    [
+			    [artifactId: 'app', 
+			     classifier: '', 
+			     file: 'target/app-SNAPSHOT.war', 
+			     type: 'war']], 
+		    credentialsId: 'newnexus', 
+		    groupId: 'com.app', 
+		    nexusUrl: '192.168.33.10:8081', 
+		    nexusVersion: 'nexus3',
+		    protocol: 'http', 
+		    repository: 'userrepo', 
+		    version: 'SNAPSHOT'
       }
     }
     stage('build docker image') {
       steps {
         script {
-		  withDockerServer([uri: 'tcp://192.168.43.134:2375']) {
+		  withDockerServer([uri: 'tcp://192.168.33.10:2375']) {
             appImage = docker.build registry
 		  }
         }
@@ -57,7 +67,7 @@ pipeline {
    stage('push docker image') {
       steps {
 		script {
-		  withDockerServer([uri: 'tcp://192.168.43.134:2375']) {
+		  withDockerServer([uri: 'tcp://192.168.33.10:2375']) {
 			withDockerRegistry(credentialsId: 'dockerhub') {
 			  appImage.push("${env.BUILD_NUMBER}")
 			  appImage.push("latest")
