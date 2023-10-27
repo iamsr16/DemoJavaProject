@@ -7,7 +7,7 @@ pipeline {
         }
   agent any
   tools {
-    maven 'Apache Maven 3.3.9'
+    maven 'D:\software\apache-maven-3.8.6'
   }
   stages {
     stage('Create Version') {
